@@ -1,19 +1,19 @@
 * {
     font-family: "Noto Sans TC", sans-serif;
     letter-spacing: 2px;
-    line-height: 2;
+    line-height:2;
     text-align: center;
 }
 
 body {
-    background-color:rgb(230, 227, 224)
+    background-color: rgb(230, 227, 224)
 }
 
 .wrap {
     margin: auto;
     width: 1280px;
     border: 1px solid:#f0f0f0;
-    background-color:#f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .header a {
@@ -36,10 +36,12 @@ li {
 .header {
 
     border-bottom: 3px solid rgb(230, 227, 224);
+    height: 40px;
 }
 
 .header_left {
     display: flex;
+    text-align: center;
 }
 
 li:first-child:after {
@@ -67,14 +69,13 @@ svg {
 .header_right {
     font-size: 20px;
     margin-left: 46%;
-
 }
 
 .items_group {
     padding-top: 10px;
     padding-left: 10px;
     display: flex;
-    
+
 }
 
 .left_colum {
@@ -89,7 +90,7 @@ svg {
     width: 66%;
     display: flex;
     flex-wrap: wrap;
-    background-color:#f0f0f0;
+    background-color: #f0f0f0;
 }
 
 .right_colum img {
@@ -108,6 +109,6 @@ svg {
     font-weight: bolder;
 }
 
-.item a{
+.item a {
     text-decoration: none;
 }
