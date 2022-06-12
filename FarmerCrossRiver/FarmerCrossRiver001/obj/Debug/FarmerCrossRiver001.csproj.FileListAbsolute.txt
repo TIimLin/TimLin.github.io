@@ -1,0 +1,11 @@
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\bin\Debug\FarmerCrossRiver001.exe.config
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\bin\Debug\FarmerCrossRiver001.exe
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\bin\Debug\FarmerCrossRiver001.pdb
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.csproj.AssemblyReference.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.csproj.SuggestedBindingRedirects.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.Form1.resources
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.Properties.Resources.resources
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.csproj.GenerateResource.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.csproj.CoreCompileInputs.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.exe
+C:\Users\TimLin\Downloads\TIimLin.github.io\FarmerCrossRiver\FarmerCrossRiver001\obj\Debug\FarmerCrossRiver001.pdb
