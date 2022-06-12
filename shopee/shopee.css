@@ -5,27 +5,27 @@
     text-align: center;
 }
 
-body{
-    background-color:rgb(219, 213, 213)
+body {
+    background-color: rgb(219, 213, 213)
 }
 
-.wrap{
+.wrap {
     margin: auto;
     width: 1280px;
     border: 1px solid #000;
     background-color: #000;
 }
 
-.header a{
+.header a {
     text-decoration: none;
     color: #d0011b;
-    font-weight:900;
+    font-weight: 900;
 }
 
-ul{
+ul {
     margin: 9px;
     padding: 0px;
-    list-style-type:none;
+    list-style-type: none;
 }
 
 li {
@@ -34,11 +34,11 @@ li {
 }
 
 .header {
-    
+
     border-bottom: 3px solid #f0f0f0;
 }
 
-.header_left{
+.header_left {
     display: flex;
 }
 
@@ -47,7 +47,7 @@ li:first-child:after {
     color: #d3d3d3;
 }
 
-li>img{
+li>img {
     width: 18px;
     margin-right: 10px;
 }
@@ -59,29 +59,29 @@ svg {
     display: inline-block;
     width: 15px;
     padding: 3px;
-    text-align:center;
+    text-align: center;
     margin-left: 5px;
-    vertical-align:-10%;
+    vertical-align: -10%;
 }
 
-.header_right  {
+.header_right {
     font-size: 20px;
-    margin-left:46%;
-    
+    margin-left: 46%;
+
 }
 
 .items_group {
     padding-top: 10px;
-     padding-left: 10px;
+    padding-left: 10px;
     display: flex;
-     justify-content: space-between;
+    justify-content: space-between;
 }
 
 .left_colum {
     width: 38%;
 }
 
-.left_colum img{
+.left_colum img {
     height: 100%;
 }
 
@@ -94,18 +94,18 @@ svg {
     justify-content: space-evenly;
 }
 
-.right_colum img{
+.right_colum img {
     width: 180px;
     padding: 0;
 }
 
 .item {
     width: 180px;
-    margin:0 auto;
+    margin: 0 auto;
 }
-.item p{
+
+.item p {
     font-size: 18px;
     color: #d0011b;
     font-weight: bolder;
 }
-
