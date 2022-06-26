@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./profile.css">
+</head>
+
+<body>
+    <div class="form">
+        <div class="pic">
+            <img src="" alt="">
+        </div>
+
+        <div class="info">
+            <ul></ul>
+        </div>
+
+        <div class="footer">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const timlogo = "./img/LOGO OF TIM -1.jpg";
+        let myPic = document.querySelector("img");
+        myPic.src = timlogo;
+
+        let infoname = "Tim";
+        let infoemail = "tim12345@gmail.com";
+        let infoschool = "Build School";
+        let infohobbies = ["打電玩", "看電影"]
+
+        let info = document.querySelector("ul");
+        info.innerHTML = `<li>Name: ${infoname}</li>
+                    <li>Email: ${infoemail}</li>
+                    <li>School: ${infoschool}</li>
+                    <li>Hobbies: ${infohobbies}</li>`;
+
+        const imgArray = [
+            "./img/alvan-nee-T-0EW-SEbsE-unsplash.jpg",
+            "./img/cat-g2e09d89a3_1920.jpg",
+            "./img/hedgehog-g4269ab9d9_1920.jpg"
+        ];
+
+
+       let footerCol=document.querySelectorAll(".footer img");
+       footerCol.forEach((img,index)=>{
+        img.setAttribute("src",imgArray[index]);
+       });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+.form {
+    width: 840px;
+    margin: auto;
+    padding: 10px;
+    border: 10px ridge #005caf;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center
+
+    
+  }
+
+    .footer{
+    width: 100%;
+    box-sizing: border-box;
+    height:300px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer img {
+    width: 0;
+    flex-grow: 1;
+  }
+
+  .pic img{
+    width: 100%;
+    /* padding: 10px; */
+    box-sizing: border-box;
+   
+  }
+
+  .info {
+    padding: 40pt 10px;
+    box-sizing: border-box;
+    font-size: 30px;
+    font-family: "Microsoft JhengHei";
+  }
