@@ -1,0 +1,23 @@
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\bin\Debug\LinqHomework.exe.config
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\bin\Debug\LinqHomework.exe
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\bin\Debug\LinqHomework.pdb
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.exe
+C:\Users\USER\Desktop\BS_DevOps\BuildSchool-教材\1_C#\2_LInq練習\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.pdb
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\bin\Debug\LinqHomework.exe.config
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\bin\Debug\LinqHomework.exe
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\bin\Debug\LinqHomework.pdb
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.csproj.AssemblyReference.cache
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.csproj.SuggestedBindingRedirects.cache
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.csproj.CoreCompileInputs.cache
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.exe
+C:\Users\TimLin\Downloads\C Sharp\作業\LinqHomework_答案\LinqHomework\obj\Debug\LinqHomework.pdb
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\bin\Debug\LinqHomework.exe.config
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\bin\Debug\LinqHomework.exe
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\bin\Debug\LinqHomework.pdb
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\obj\Debug\LinqHomework.csproj.AssemblyReference.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\obj\Debug\LinqHomework.csproj.SuggestedBindingRedirects.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\obj\Debug\LinqHomework.csproj.CoreCompileInputs.cache
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\obj\Debug\LinqHomework.exe
+C:\Users\TimLin\Downloads\TIimLin.github.io\LinqHomework\LinqHomework\obj\Debug\LinqHomework.pdb
