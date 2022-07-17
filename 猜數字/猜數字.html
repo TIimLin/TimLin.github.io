@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜數字</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+    .box{
+            margin:auto;
+            box-shadow: 3px 3px 7px rgba(111,111,111,.9);
+            height: 100vh;
+            display: relative;
+            background-color: black;
+        }
+        .buttons{
+            margin:auto;
+            display:flex;
+            justify-content: center;
+        }
+
+        .buttons>.btn{
+            margin: 0 15px 20px;
+            padding: 10px;
+            font-size: 40px;
+            font-weight: bolder;
+            cursor: pointer;
+            background-color: rgb(24, 21, 16);
+            border: 2px solid transparent;
+            border-radius: 20px;
+        }
+
+        .input-group{
+            width: 80%;
+            margin:auto
+        }
+        
+        .btn.btn-danger:hover{
+            cursor:default
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="box border-2 w-100 m-auto border border-dark p-5 bg-light container"">
+        <section class="buttons ">
+            <button type="button" class="btn btn-outline-primary btn-lg fw-bold">開始</button>
+            <button type="button" class="btn btn-outline-primary btn-lg fw-bold">放棄重來</button>
+            <button type="button" class="btn btn-outline-primary btn-lg fw-bold">看答案</button>
+        </section>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">猜答案</span>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" maxlength="4" placeholder="請輸入4個不重複的數字">
+            <button class="btn btn-outline-primary" type="button" id="button-addon2">確認</button>
+        </div>
+        <ul class="list-group"></ul>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let a
+        let b
+        let numbArray
+
+        let startBtn = document.querySelector('.buttons > button:nth-of-type(1)')
+        let gameOverBtn = document.querySelector('.buttons > button:nth-of-type(2)')
+        let answerBtn = document.querySelector('.buttons > button:nth-of-type(3)')
+        let guessBtn = document.querySelector('.input-group > button:nth-of-type(1)')
+        let inputBtn = document.querySelector('input')
+        let box = document.querySelector('.box')
+        let msg = document.querySelector('.list-group')
+
+        window.onload = () => {
+
+            Game_Init()
+
+            startBtn.onclick = (GameStart)
+
+            answerBtn.onclick = (answer)
+
+            guessBtn.onclick = (guessAns)
+
+            gameOverBtn.onclick = (QuitGame)
+
+        }
+
+        function Game_Init() {
+            inputBtn.disabled = 1
+            answerBtn.disabled = 1
+            gameOverBtn.disabled = 1
+            guessBtn.disabled = 1
+        }
+
+        function GameStart() {
+            alert(`請在下方輸入0-9的數字`)
+            inputBtn.disabled = 0
+            answerBtn.disabled = 0
+            gameOverBtn.disabled = 0
+            guessBtn.disabled = 0
+
+            numbArray = [4]
+            let number = Math.floor(Math.random() * 10)
+            for (let i = 0; i <= 3; i++) {
+                while (numbArray.includes(number)) {
+                    number = Math.floor(Math.random() * 10)
+                }
+                numbArray[i] = number
+                console.log(number)
+            }
+        }
+
+        function answer() {
+            alert(`答案是: ${numbArray.join('')},你猜對了嗎?`)
+        }
+
+        function guessAns() {
+
+            let guessNum = inputBtn.value
+            rules = /^(?!\d*?(\d)\d*?\1)[0-9]{4}$/
+
+            if (rules.test(guessNum) == true) {
+                console.log(rules.test(guessNum))
+
+                let arr = guessNum.split('').map(x => parseInt(x))
+                console.log(guessNum)
+                console.log(numbArray)
+                let intersect = numbArray.filter(x => guessNum.includes(x))
+                console.log(intersect)
+                a = intersect.filter(x => numbArray.indexOf(x) == guessNum.indexOf(x)).length
+                console.log(a)
+                b = intersect.length - a
+                console.log(b)
+                console.log(`${a}A${b}B`)
+
+                let list = document.createElement('li')
+                let ABAB = document.createElement('button')
+                ABAB.setAttribute('class', 'btn btn-danger')
+                list.setAttribute('class', 'list-group-item')
+
+                ABAB.innerText = `${a}A${b}B`
+                msg.append(list)
+                list.innerText = `${inputBtn.value}`
+                list.append(ABAB)
+                inputBtn.value = ''
+                GameWin()
+            } else {
+                alert(`你的格式錯誤!`)
+                inputBtn.value = ''
+            }
+        }
+
+        function GameWin() {
+            if (a == 4) {
+                alert(`恭 喜 你猜對了~`)
+
+            }
+        }
+
+        function CleanMsg() {
+            inputBtn.value = ''
+            items = msg.children
+            Array.from(items).forEach(x => x.remove())
+        }
+
+        function QuitGame() {
+            alert(`答案是${numbArray.join('')}! 加油~再接再厲~`)
+            CleanMsg()
+            Game_Init()
+        }
+
+    </script>
+
+</body>
+
+</html>
