@@ -96,18 +96,18 @@
         }
 
         function Game_Init() {
-            inputBtn.disabled = 1
-            answerBtn.disabled = 1
-            gameOverBtn.disabled = 1
-            guessBtn.disabled = 1
+            inputBtn.disabled = true
+            answerBtn.disabled = true
+            gameOverBtn.disabled = true
+            guessBtn.disabled = true
         }
 
         function GameStart() {
             alert(`請在下方輸入0-9的數字`)
-            inputBtn.disabled = 0
-            answerBtn.disabled = 0
-            gameOverBtn.disabled = 0
-            guessBtn.disabled = 0
+            inputBtn.disabled = false
+            answerBtn.disabled = false
+            gameOverBtn.disabled = false
+            guessBtn.disabled = false
 
             numbArray = [4]
             let number = Math.floor(Math.random() * 10)
