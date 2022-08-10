@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link rel="stylesheet" href="./css reset.css">
+    <script src="https://kit.fontawesome.com/933a0ce8b3.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #89D2BA;
+            border: 3px solid #EDD29F;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #1F6866;
+            font-family: monospace;
+            font-size: 40px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        h2 {
+            padding: 5px;
+            font-size: 20px;
+        }
+
+        .add {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            margin-bottom: 16px;
+        }
+
+        .add__input {
+            width: 640px;
+            border: none;
+            border-bottom: 3px solid #EDD29F;
+            background-color: #89D2BA;
+            padding: 5px 10px;
+            font-size: 18px;
+        }
+
+        .wait,
+        .done {
+            border: 3px solid #EDD29F;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 16px;
+        }
+
+        .add__item,
+        .wait__item,
+        .done__item {
+            padding: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+        }
+
+        .wait__item__text,
+        .done__item__text {
+            width: 80%;
+            word-break: break-all;
+            padding-left: 10px;
+            font-size: 18px;
+        }
+
+        .wait__item__text__input {
+            width: 100%;
+            border: none;
+            background-color: inherit;
+            font-size: 18px;
+            border: 2px solid #EDD29F;
+            padding: 2px;
+        }
+
+        .wait__item__icons,
+        .done__item__icons {
+            display: flex;
+        }
+
+        .wait__item__icons__modify,
+        .wait__item__icons__trash,
+        .wait__item__icons__done,
+        .done__item__icons__trash,
+        .done__item__icons__done {
+            margin: 0 5px;
+        }
+
+        i {
+            display: block;
+            font-size: 23px;
+            color: #206766;
+        }
+
+        i:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <div class="add">
+            <input class="add__input" type="text" placeholder="請輸入待辦項目">
+            <div class="add__icon"><i class="fas fa-plus-circle"></i></div>
+        </div>
+
+        <div class="wait">
+            <h2>待辦項目</h2>
+        </div>
+
+        <div class="done">
+            <h2>完成項目</h2>
+        </div>
+    </div>
+
+    <script>
+        let addinput = document.getElementsByClassName('add__input')[0];
+        let addevent = document.getElementsByClassName('add__icon')[0];
+        let wait = document.getElementsByClassName('wait')[0];
+        let done = document.getElementsByClassName('done')[0];
+        let controlModify = true;
+
+       
+
+
+        addevent.onclick = function () {
+            let addcontent = addinput.value.trim();
+            if (addcontent == "") {
+                alert("尚未輸入項目");
+            } else {
+                addWaititem(addcontent);
+                addinput.value = "";
+            }
+        };
+
+        function addWaititem(content) {
+            let waitItem = document.createElement("div");
+            let waitItemText = document.createElement("div");
+            let waitItemIcons = document.createElement("div");
+            let waitItemIconsModify = document.createElement("div");
+            let waitItemIconsTrash = document.createElement("div");
+            let waitItemIconsDone = document.createElement("div");
+            //添加class
+            waitItem.className = "wait__item";
+            waitItemText.className = "wait__item__text";
+            waitItemIcons.className = "wait__item__icons";
+            waitItemIconsModify.className = "wait__item__icons__modify";
+            waitItemIconsTrash.className = "wait__item__icons__trash";
+            waitItemIconsDone.className = "wait__item__icons__done";
+            //添加待辦事項內容
+            waitItemText.innerHTML = content;
+            //添加icon
+            waitItemIconsModify.innerHTML = "<i class=" + '"fas fa-pencil-alt"' + "></i>";
+            waitItemIconsTrash.innerHTML = "<i class=" + '"fas fa-trash-alt"' + "></i>";
+            waitItemIconsDone.innerHTML = "<i class=" + '"far fa-check-circle"' + "></i>";
+            //添加元素，形成父子關係
+            waitItemIcons.appendChild(waitItemIconsModify);
+            waitItemIcons.appendChild(waitItemIconsTrash);
+            waitItemIcons.appendChild(waitItemIconsDone);
+            waitItem.appendChild(waitItemText);
+            waitItem.appendChild(waitItemIcons);
+            //添加到頁面上
+            wait.appendChild(waitItem);
+            //增加修改方法
+            waitItemIconsModify.onclick = function (ev) {
+                if (controlModify == true) {
+                    controlModify = false;
+                    let waitItemBefore = waitItemText.innerHTML;
+                    waitItemText.innerHTML = "<input class=" + '"wait__item__text__input"' + 'type="text">';
+                    let waitItemTextInput = document.getElementsByClassName('wait__item__text__input')[0];
+                    waitItemTextInput.value = waitItemBefore;
+                    waitItemTextInput.focus();
+                    ev = window.event || ev;
+                    ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
+                    document.onclick = function () {
+                        waitItemText.innerHTML = waitItemTextInput.value;
+                        controlModify = true;
+                    }
+                }
+            }
+            //增加刪除方法
+            waitItemIconsTrash.onclick = function () {
+                waitItem.parentNode.removeChild(waitItem);
+            }
+            //增加完成方法
+            waitItemIconsDone.onclick = function () {
+                if (controlModify == true) {
+                    addDoneItem(waitItemText.innerHTML);
+                    waitItem.parentNode.removeChild(waitItem);
+                }
+            }
+        }
+
+        function addDoneItem(doneContent) {
+            let doneItem = document.createElement("div");
+            let doneItemText = document.createElement("div");
+            let doneItemIcons = document.createElement("div");
+            let doneItemIconsTrash = document.createElement("div");
+            let doneItemIconsDone = document.createElement("div");
+            //添加class
+            doneItem.className = "done__item";
+            doneItemText.className = "done__item__text";
+            doneItemIcons.className = "done__item__icons";
+            doneItemIconsTrash.className = "done__item__icons__trash";
+            doneItemIconsDone.className = "done__item__icons__done";
+            //添加完成事項內容
+            doneItemText.innerHTML = doneContent;
+            //添加icon
+            doneItemIconsTrash.innerHTML = "<i class=" + '"fas fa-trash-alt"' + "></i>";
+            doneItemIconsDone.innerHTML = "<i class=" + '"fas fa-check-circle"' + "></i>";
+            //添加元素，形成父子關係
+            doneItemIcons.appendChild(doneItemIconsTrash);
+            doneItemIcons.appendChild(doneItemIconsDone);
+            doneItem.appendChild(doneItemText);
+            doneItem.appendChild(doneItemIcons);
+            //添加到頁面上
+            done.appendChild(doneItem);
+            //增加刪除方法
+            doneItemIconsTrash.onclick = function () {
+                doneItem.parentNode.removeChild(doneItem);
+            }
+            // 增加未完成方法
+            doneItemIconsDone.onclick = function () {
+                addWaititem(doneItemText.innerHTML);
+                doneItem.parentNode.removeChild(doneItem);
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
