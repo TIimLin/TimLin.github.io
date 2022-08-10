@@ -115,6 +115,8 @@ namespace LinqHomework
                 });
                 var step2=string.Join(Environment.NewLine,step1);
                 Console.WriteLine(step2);
+
+                Console.WriteLine(string.Join(Environment.NewLine,personList.Select(person=>$"{person.Name}:{string.Join(",",videoList.Where(video=>person.CountryPrefer.Contains(video.Country)&&person.TypePrefer.Contains(video.Type)).Select(v=>v.Name))}")));
             }
             // 9. 列出所有類型的影片總時長，ex: 動漫: 100min
             Console.WriteLine($"{Environment.NewLine}Q9: 列出所有類型的影片總時長");
