@@ -1,0 +1,471 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/24eccec891.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-image: linear-gradient(280deg, rgb(227, 227, 240), rgba(255, 255, 255, 0.667));
+        }
+
+        .row {
+            width: 100%;
+        }
+
+
+        .box {
+            height: 100px;
+            border: 1px solid rgb(184, 168, 223);
+            overflow-y: auto;
+            overflow-x: hidden;
+            word-wrap: break-word;
+            /* width: 150px; */
+        }
+
+        .today-span:hover {
+            cursor: pointer;
+        }
+
+        .calendar-title {
+            height: 50px;
+            border: 1px solid rgb(184, 168, 223);
+            border-bottom: 2px solid rgba(184, 168, 223);
+            line-height: 50px;
+        }
+
+        .fa-angle-right:hover {
+            cursor: pointer;
+        }
+
+        .fa-angle-left:hover {
+            cursor: pointer;
+        }
+
+        [type=color] {
+            width: 50px;
+        }
+
+        [data-id]:hover {
+            cursor: pointer;
+
+        }
+
+        .line {
+            width: 100px;
+            height: 3px;
+            background-color: #000;
+            display: inline-block;
+        }
+    </style>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M7HWDNP');</script>
+    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7HWDNP" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <section class="header d-flex justify-content-center">
+    </section>
+
+    <section class="calendar-area ">
+    </section>
+
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary modal-btn d-none" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal1Label">代辦清單</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="info">
+                        <div class="container">
+                            <form action="">
+                                <label for="">選擇時間：</label>
+                                <input type="time" class="form-control input-time" />
+
+                                <label for="">代辦事項：</label>
+                                <input type="text" class="form-control input-text" />
+
+                                <label for="">顏色標記：</label>
+                                <input type="color" class="form-control input-color" />
+                            </form>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-clear"
+                                    data-bs-dismiss="modal">清除當日行程</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                                <button type="button" class="btn btn-primary btn-save"
+                                    data-bs-dismiss="modal">存檔</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- test -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal1Label">代辦清單</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="info">
+                        <div class="container">
+
+                            <div class="schedule-update">
+                                <span>原定行程：</span>
+                                <span class="schedule-text me-5"></span>
+                                <input id="edit-value" type="text">
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    onclick="deleteTodoItem()">刪除</button>
+                                <button type="button" id="edit-value" class="btn btn-primary" data-bs-dismiss="modal"
+                                    onclick="EditToItem()">修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 編輯行程
+    <div id=" exampleModal1" class="modal fade" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal1Label">編輯</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="info">
+                        <div class="container">
+
+                            <div class="schedule-update">
+                                <span>原定行程：</span>
+                                <span class="schedule-text me-5"></span>
+                                <input id="edit-value" type="text">
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    onclick="deleteTodoItem()">刪除</button>
+                                <button type="button" id="edit-value" class="btn btn-primary" data-bs-dismiss="modal"
+                                    onclick="EditToItem()">修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const calendarData = [
+            {
+                "week": [
+                    "日", "一", "二", "三", "四", "五", "六"
+                ],
+                "month": [
+                    "Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+                ]
+            }
+        ]
+        let element = document.getElementById("form");
+        let date = new Date()
+        let year = date.getFullYear()
+        let month = date.getMonth()
+        let today = date.getDate()
+        let day;
+        let currentIndex;
+        let schedulesDay;
+
+
+        const editModal = document.querySelector('#exampleModal2')
+        const editValueInput = document.querySelector('#edit-value')
+
+        //window onload
+        window.onload = function () {
+            createHeader();
+            createCalendar();
+            addToLocalStorage();
+        }
+
+        let headerSection = document.querySelector('.header')
+        let calendarSection = document.querySelector('.calendar-area')
+        let input = document.querySelector('input')
+
+        //function
+        function createHeader() {
+
+            headerSection.innerText = ""
+            let date = new Date()
+            let divHeader = document.createElement('div')
+            let divRow = document.createElement('div')
+            divRow.classList.add('row', 'col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'position-relative')
+            divHeader.classList.add('container', 'd-flex', 'justify-content-center')
+
+            let todaySpan = document.createElement('span')
+            todaySpan.classList.add('col-2', 'd-flex', 'today-span')
+            todaySpan.innerText = `${year}年${month + 1}月${today}日`
+            todaySpan.onclick = () => {
+                location.reload();
+            }
+            divRow.append(todaySpan)
+
+            let iconLeft = document.createElement('i')
+            iconLeft.classList.add('fa-angle-left', 'fa-solid', 'col-1')
+            iconLeft.addEventListener('click', () => {
+                month -= 1
+                if (month < 0) {
+                    month = 11;
+                    year -= 1;
+                }
+                divMonth.innerHTML = calendarData.find(x => x.month).month[month] + "<br>" + year
+                createCalendar();
+
+            })
+            divRow.append(iconLeft)
+
+            let divMonth = document.createElement('div')
+            let yearSpan = document.createElement('year')
+            divMonth.classList.add('col-6', 'text-center')
+            divMonth.innerHTML = calendarData.find(x => x.month).month[month] + "<br>" + year
+            divRow.append(divMonth)
+
+            let iconRight = document.createElement('i')
+            iconRight.classList.add('fa-angle-right', 'fa-solid', 'col-1', 'text-end')
+            iconRight.addEventListener('click', () => {
+                month += 1
+                if (month > 11) {
+                    month = 0;
+                    year += 1;
+                }
+                divMonth.innerHTML = calendarData.find(x => x.month).month[month] + "<br>" + year
+                createCalendar();
+            })
+            divRow.append(iconRight)
+            divHeader.append(divRow)
+            headerSection.append(divHeader)
+
+        }
+
+        function createCalendar() {
+            // 抓到當月有幾天
+
+            calendarSection.innerText = ""
+            console.log(month)
+
+            let firstDay = new Date(year, month, 1).getDay()  //當月的第一天在禮拜幾
+            let lastDay = new Date(year, month + 1, 0).getDate() //當月的最後一天是幾號
+            let lastMonthLastDay = new Date(year, month, 0).getDate() //上月的最後一天是幾號
+            console.log(month)
+            //日曆星期日~一
+            let container = document.createElement('div')
+            container.classList.add('container', 'd-flex', 'flex-column', 'align-items-center')
+            let divTitleRow = document.createElement('div')
+            divTitleRow.classList.add('row', 'col-7', 'd-flex')
+            calendarData.forEach(item => {
+                item.week.forEach(day => {
+                    let divTitle = document.createElement('div')
+                    divTitle.classList.add('col-1', 'flex-grow-1', 'text-center', 'shadow-sm', 'calendar-title', 'bg-primary', 'col', 'text-white')
+                    divTitle.innerText = day
+                    divTitleRow.append(divTitle)
+                })
+            })
+            container.append(divTitleRow)
+
+            let times = 0;       //用來計算開始天數 
+            let numberOfDay = 1; //每月第一天
+            let dayOfFuture = 1; //每月剩下的天數
+            let dayOfLast = (lastMonthLastDay - firstDay) + 1; //上個剩下的天數顯示在日曆上
+            let numberArray;
+            let regGetToday = /\d*/;
+
+            // 6圈row，7圈div日曆
+            for (let i = 0; i < 6; i++) {
+                let divRow = document.createElement('div')
+                divRow.classList.add('row', 'col-7', 'd-flex')
+
+                for (let x = 0; x < 7; x++) {
+                    let displaySchedule = document.querySelector('.schedule-text')
+                    let divCol = document.createElement('div')
+                    divCol.classList.add('col-1', 'flex-grow-1', 'text-start', 'box', 'text-black-50')
+                    divCol.innerText = dayOfLast
+                    dayOfLast++
+
+                    if (times >= firstDay) {
+                        divCol.innerHTML = `${numberOfDay}<br>`
+                        divCol.setAttribute('data-id', `${year}${month + 1}${numberOfDay}`)
+                        divCol.setAttribute('data-day', `${year - 2000}${month + 1}${numberOfDay}`)
+
+
+                        if (localStorage.getItem(`schedules${year}${month + 1}${numberOfDay}`) != null) {
+                            let listArray = JSON.parse(localStorage.getItem(`schedules${year}${month + 1}${numberOfDay}`))
+                            listArray.forEach((schedule, index) => {
+                                let text = document.createElement('p')
+                                text.innerText = `${schedule.todolist[0].time}  ${schedule.todolist[0].todo}`
+                                text.style.color = schedule.todolist[0].color
+
+                                text.onclick = (e) => {
+                                    currentIndex = index
+                                    day = divCol.childNodes[0].data
+                                    displaySchedule.innerText = schedule.todolist[0].todo
+                                    bootstrap.Modal.getOrCreateInstance(editModal).show()
+                                    e.stopPropagation()
+                                }
+
+                                divCol.append(text)
+                            })
+                        }
+                        numberOfDay++
+                        divCol.addEventListener('click', () => {
+                            let modalButton = document.querySelector('.modal-btn')
+                            let temp = divCol.innerText
+                            day = Number(regGetToday.exec(temp))
+                            modalButton.click()
+                        })
+                        divCol.classList.remove('text-black-50')
+                    }
+                    if (times >= (lastDay + firstDay)) {
+                        divCol.innerText = dayOfFuture
+                        divCol.classList.add('text-black-50')
+                        dayOfFuture++
+                    }
+                    divRow.append(divCol)
+                    times++
+
+                }
+                container.append(divRow)
+            }
+            calendarSection.append(container)
+
+
+        }
+
+        let divCol;
+
+        function addToLocalStorage() {
+            let btnSave = document.querySelector('.btn-save')
+            let btnClear = document.querySelector('.btn-clear')
+            let date = document.querySelector('.input-date')
+            let time = document.querySelector('.input-time')
+            let text = document.querySelector('.input-text')
+            let color = document.querySelector('.input-color')
+
+            btnSave.addEventListener('click', () => {
+                let schedule = {
+                    "year": year,
+                    "month": month + 1,
+                    "day": day,
+                    "todolist": [
+                        {
+                            "time": time.value,
+                            "todo": text.value,
+                            "color": color.value
+                        }
+                    ]
+                }
+                console.log(day)
+                let myList = localStorage.getItem(`schedules${year}${month + 1}${day}`)
+                if (myList == null) {
+                    localStorage.setItem(`schedules${year}${month + 1}${day}`, JSON.stringify([schedule]))
+                } else {
+                    let myListArray = JSON.parse(myList)
+                    myListArray.push(schedule)
+                    localStorage.setItem(`schedules${year}${month + 1}${day}`, JSON.stringify(myListArray))
+                    console.log(myListArray)
+                }
+                text.value = ""
+                time.value = ""
+                color.value = "#000000"
+
+                createCalendar()
+            })
+            btnClear.addEventListener('click', () => {
+                localStorage.removeItem(`schedules${year}${month + 1}${day}`)
+                createCalendar()
+            })
+        }
+
+        function EditToItem() {
+            let schedule = JSON.parse(localStorage.getItem(`schedules${year}${month + 1}${day}`))
+
+            if (editValueInput.value != "") {
+                console.log(schedule[currentIndex].todolist[0].time)
+                schedule[currentIndex].todolist[0] = { time: `${schedule[currentIndex].todolist[0].time}`, todo: editValueInput.value }
+            } else {
+                alert("請輸入行程")
+            }
+
+            localStorage.setItem(`schedules${year}${month + 1}${day}`, JSON.stringify(schedule))
+            editValueInput.value = ""
+            bootstrap.Modal.getOrCreateInstance(editModal).hide()
+            createCalendar()
+        }
+
+        function deleteTodoItem() {
+
+            let deleteItem = JSON.parse(localStorage.getItem(`schedules${year}${month + 1}${day}`))
+            deleteItem.splice(currentIndex, 1)
+
+            localStorage.setItem(`schedules${year}${month + 1}${day}`, JSON.stringify(deleteItem))
+            bootstrap.Modal.getOrCreateInstance(editModal).hide()
+            createCalendar()
+        }
+
+    </script>
+</body>
+
+</html>
