@@ -68,8 +68,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 let texts = [];
+let boundingBoxes = [];
+let translatedTexts = [];
 
 async function processImage() {
+
+    // 清空 boundingBoxes 陣列
+    boundingBoxes = [];
+
     let endpoint = "https://tim082201-computer.cognitiveservices.azure.com/";
     if (!subscriptionKey) { throw new Error('Set your environment variables for your subscription key and endpoint.'); }
 
@@ -101,6 +107,13 @@ async function processImage() {
                     for (let z of y.words) {
                         recognitionCardNumber.append(z.text + " ");
                         texts.push(z.text);
+                        // boundingBoxes.push(z.boundingBox);
+
+                        // 創建一個新的物件並將其推送到 boundingBoxes 陣列
+                        boundingBoxes.push({
+                            boundingBox: z.boundingBox,
+                            text: z.text
+                        });
                     }
                 }
             }
@@ -109,10 +122,16 @@ async function processImage() {
         console.error(error);
         console.log(error);
     }
+    drawImageOnCanvas(sourceImageUrl);
+
 };
 
 //增加本地上傳圖片功能
 async function processImageFile(imageObject) {
+
+    // 清空 boundingBoxes 陣列
+    boundingBoxes = [];
+
     let endpoint = "https://tim082201-computer.cognitiveservices.azure.com/";
     if (!subscriptionKey) { throw new Error('Set your environment variables for your subscription key and endpoint.'); }
 
@@ -147,6 +166,13 @@ async function processImageFile(imageObject) {
                     for (let z of y.words) {
                         recognitionCardNumber.append(z.text + " ");
                         texts.push(z.text);
+                        // boundingBoxes.push(z.boundingBox);
+
+                        // 創建一個新的物件並將其推送到 boundingBoxes 陣列
+                        boundingBoxes.push({
+                            boundingBox: z.boundingBox,
+                            text: z.text
+                        });
                     }
                 }
             }
@@ -155,6 +181,7 @@ async function processImageFile(imageObject) {
         console.error(error);
         console.log(error);
     }
+    drawImageOnCanvas(sourceImageUrl);
 
 };
 
@@ -166,7 +193,13 @@ async function processTranslate() {
         "to": "zh-Hant"
     });
 
-    let sourceTranslateText = texts.join(' ');
+    // let sourceTranslateText = texts.join(' ');
+
+    // 從每個 boundingBox 物件中取出 text 屬性並將它們連接成一個字串
+    let sourceTranslateText = boundingBoxes.map(boundingBox => boundingBox.text).join(' ');
+
+    let sourceTranslateText1 = boundingBoxes
+    console.log(sourceTranslateText1)
 
     try {
         let response = await fetch(uriBase + "?" + params.toString(), {
@@ -187,10 +220,16 @@ async function processTranslate() {
         let translateResult = document.getElementById('translateResult');
         if (translateResult) {
             translateResult.innerHTML = '';
-            data[0].translations.forEach(function (translation) {
+            data[0].translations.forEach(function (translation, i) {
                 translateResult.append(translation.text + "<br>");
+                translatedTexts.push({
+                    text: translation.text,
+                    boundingBoxes
+                });
             });
         }
+        a = translatedTexts
+        console.log(a)
 
         var hiddenElements = Array.from(document.getElementsByClassName('hidden'));
         for (var i = 0; i < hiddenElements.length; i++) {
@@ -202,3 +241,48 @@ async function processTranslate() {
         console.log(error);
     }
 };
+
+
+function drawImageOnCanvas(imageUrl) {
+    let canvas = document.getElementById('myCanvas');
+    let ctx = canvas.getContext('2d');
+
+    // 清除 canvas 的內容
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    let img = new Image();
+    img.onload = function () {
+        // 將 canvas 的大小設置為與圖片的大小相同
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // 繪製圖片
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+
+        // 繪製每一個翻譯的文字和邊框
+        for (let boundingBox of boundingBoxes) {
+            // 分解邊界框的座標
+            let coordinates = boundingBox.boundingBox.split(',').map(Number);
+
+            // 設置文字的樣式
+            ctx.fillStyle = 'blue'; // 设置文字颜色
+            ctx.font = '20px Arial'; // 设置字体和大小
+
+            var x = coordinates[0];
+            var y = coordinates[1];
+            var width = coordinates[2] ;
+            var height = coordinates[3] ;
+
+            // 繪製文字
+            ctx.fillText(boundingBox.text, x, y);
+
+            // 設置邊框的樣式
+            ctx.strokeStyle = 'red'; // 设置边框颜色
+            ctx.lineWidth = 2; // 设置边框宽度
+
+            // 繪製邊框
+            ctx.strokeRect(x, y, width, height);
+        }
+    }
+    img.src = imageUrl;
+}
