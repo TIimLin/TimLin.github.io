@@ -281,7 +281,9 @@ function drawImageOnCanvas(imageUrl) {
             ctx.lineWidth = 2; // 设置边框宽度
 
             // 繪製邊框
-            ctx.strokeRect(x, y, width, height);
+            // ctx.strokeRect(x, y, width, height);
+             //清除边框
+            ctx.clearRect(x, y, width, height);
         }
     }
     img.src = imageUrl;
