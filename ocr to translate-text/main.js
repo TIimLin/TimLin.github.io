@@ -282,7 +282,7 @@ function drawImageOnCanvas(imageUrl) {
 
             // 繪製邊框
             // ctx.strokeRect(x, y, width, height);
-             //清除边框
+            //清除边框
             ctx.clearRect(x, y, width, height);
         }
     }
