@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF 上傳</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-3">PDF 上傳</h1>
+        <form id="upload-form">
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="file-input">
+                <label class="custom-file-label" for="file-input">選擇檔案</label>
+            </div>
+            <button type="submit" class="btn btn-primary">上傳</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var fileInput = document.getElementById('file-input');
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('http://127.0.0.1:5501/upload', {
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+                if (response.ok) {
+                    alert('檔案上傳成功');
+                } else {
+                    alert('檔案上傳失敗');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
